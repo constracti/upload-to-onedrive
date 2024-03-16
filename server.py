@@ -3,10 +3,10 @@ import requests
 import urllib.parse
 
 
-from page import UploadToOnedrivePage
+from page import UploadToOneDrivePage
 
 
-class UploadToOnedriveServer(http.server.BaseHTTPRequestHandler):
+class UploadToOneDriveServer(http.server.BaseHTTPRequestHandler):
 
 	def get_addr(self, path='/'):
 		return 'http://{:s}:{:d}{:s}'.format(self.server.server_name, self.server.server_port, path)
@@ -40,7 +40,7 @@ class UploadToOnedriveServer(http.server.BaseHTTPRequestHandler):
 		self.end_headers()
 
 	def alert(self, message):
-		page = UploadToOnedrivePage()
+		page = UploadToOneDrivePage()
 		page.add_body_tag('<p>{:s}</p>'.format(message))
 		html = page.get_html()
 		self.send_response(200)

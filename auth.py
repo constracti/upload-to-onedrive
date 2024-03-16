@@ -4,7 +4,7 @@ import http.server
 import json
 import os.path
 
-from server import UploadToOnedriveServer
+from server import UploadToOneDriveServer
 
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(script_path)
@@ -54,7 +54,7 @@ print('Navigate to the page above and follow the instructions.')
 print('To kill the server press Ctrl+C on this window.')
 print()
 
-server = http.server.HTTPServer(address, UploadToOnedriveServer)
+server = http.server.HTTPServer(address, UploadToOneDriveServer)
 server.client = client
 server.callback = write_refresh_token
 try:

@@ -1,4 +1,4 @@
-class UploadToOnedrivePage:
+class UploadToOneDrivePage:
 
 	def __init__(self):
 		self.body_tags = []
@@ -9,10 +9,10 @@ class UploadToOnedrivePage:
 	def get_html(self):
 		html = '<html>\n'
 		html += '<head>\n'
-		html += '<title>Upload to Onedrive</title>\n'
+		html += '<title>Upload to OneDrive</title>\n'
 		html += '</head>\n'
 		html += '<body>\n'
-		html += '<h1>Upload to Onedrive</h1>\n'
+		html += '<h1>Upload to OneDrive</h1>\n'
 		for tag in self.body_tags:
 			html += tag
 		html += '</body>\n'
