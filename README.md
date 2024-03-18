@@ -44,16 +44,22 @@ Open the printed URL in a browser and follow the instructions.
 
 Run **simple_upload.py**:
 ```
-./simple_upload.py FILE
+./simple_upload.py [--path PATH] FILE
 ```
-where `FILE` is the file to be uploaded to the root folder in OneDrive.
+where `FILE` is the file to be uploaded to the `PATH` path in OneDrive.
+
+If `PATH` is omitted, the file will be uploaded to the root.
+
+Otherwise, `PATH` should end with a slash `\` character.
 
 ### Upload large files
 
-For larger files run **resumable_upload.py**:
+Run **resumable_upload.py**:
 ```
-./resumable_upload.py [--block-limit BLOCK_LIMIT] FILE
+./resumable_upload.py [--path PATH] [--block-limit BLOCK_LIMIT] FILE
 ```
-where `FILE` is the file to be uploaded to the root folder in OneDrive
-and `BLOCK_LIMIT` is an optional positive integer with the default value of `327,680` = `320K`.
-Then the file will be uploaded in blocks of `BLOCK_LIMIT` bytes.
+to upload the file in blocks of `BLOCK_LIMIT` bytes.
+
+Arguments `FILE` and `PATH` are the same as in **simple_upload.py**.
+
+The optional positive integer `BLOCK_LIMIT` has the default value of `327,680` = `320K`.

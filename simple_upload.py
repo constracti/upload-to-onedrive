@@ -9,9 +9,11 @@ from class_installation import Installation
 
 parser = argparse.ArgumentParser()
 parser.add_argument('file', metavar='FILE')
+parser.add_argument('--path', metavar='PATH', default='')
 args = parser.parse_args()
 
 file_path = args.file
+drive_path = args.path
 
 installation = Installation()
 
@@ -22,7 +24,7 @@ file_size = os.path.getsize(file_path)
 file_mime_type = mimetypes.guess_type(file_path)[0]
 
 file_obj = open(file_path, 'rb')
-url = 'https://graph.microsoft.com/v1.0/me/drive/root:/{:s}:/content'.format(file_name)
+url = 'https://graph.microsoft.com/v1.0/me/drive/root:/{:s}:/content'.format(drive_path + file_name)
 r = requests.put(url, headers={
 	'Authorization': 'Bearer ' + access_token,
 	'Content-Type': file_mime_type,
