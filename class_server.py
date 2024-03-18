@@ -2,11 +2,10 @@ import http.server
 import requests
 import urllib.parse
 
+from class_page import Page
 
-from page import UploadToOneDrivePage
 
-
-class UploadToOneDriveServer(http.server.BaseHTTPRequestHandler):
+class Server(http.server.BaseHTTPRequestHandler):
 
 	def get_addr(self, path='/'):
 		return 'http://{:s}:{:d}{:s}'.format(self.server.server_name, self.server.server_port, path)
@@ -40,8 +39,8 @@ class UploadToOneDriveServer(http.server.BaseHTTPRequestHandler):
 		self.end_headers()
 
 	def alert(self, message):
-		page = UploadToOneDrivePage()
-		page.add_body_tag('<p>{:s}</p>'.format(message))
+		page = Page()
+		page.add_body_tag('<p>{:s}</p>'.format(message)) # TODO escape html
 		html = page.get_html()
 		self.send_response(200)
 		self.send_header('Content-Type', 'text/html')
@@ -69,4 +68,4 @@ class UploadToOneDriveServer(http.server.BaseHTTPRequestHandler):
 		except Exception as e:
 			error = str(e)
 			self.log_error(error)
-			self.alert('Error: {:s}</p>\n'.format(error))
+			self.alert('Error: {:s}'.format(error)) # TODO set error code
