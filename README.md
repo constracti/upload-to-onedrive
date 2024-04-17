@@ -50,7 +50,7 @@ where `FILE` is the file to be uploaded to the `PATH` path in OneDrive.
 
 If `PATH` is omitted, the file will be uploaded to the root.
 
-Otherwise, `PATH` should end with a slash `\` character.
+Otherwise, `PATH` should end with a slash `/` character.
 
 ### Upload large files
 
@@ -63,3 +63,15 @@ to upload the file in blocks of `BLOCK_LIMIT` bytes.
 Arguments `FILE` and `PATH` are the same as in **simple_upload.py**.
 
 The optional positive integer `BLOCK_LIMIT` has the default value of `327,680` = `320K`.
+
+### Delete old files
+
+Run **retention_policy.py**:
+```
+./retention_policy.py [--days DAYS] PATH
+```
+to delete files from the `PATH` path in OneDrive, created at least `DAYS` days ago.
+
+`PATH` should not end with a slash `/` character.
+
+The optional non-negative integer `DAYS` has the default value of `7`.
