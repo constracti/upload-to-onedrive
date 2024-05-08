@@ -30,7 +30,6 @@ for item in r['value']:
 	date = datetime.datetime.strptime(item['createdDateTime'], '%Y-%m-%dT%H:%M:%SZ').date()
 	if date <= datetime.date.today() - datetime.timedelta(days=days):
 		print('Deleting', item['name'])
-		continue
 		url = 'https://graph.microsoft.com/v1.0/me/drive/items/{:s}/permanentDelete'.format(item['id'])
 		r = requests.post(url, headers={
 			'Authorization': 'Bearer ' + access_token,
