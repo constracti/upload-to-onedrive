@@ -79,6 +79,7 @@ class Installation:
 		})
 		r = r.json()
 		assert 'error' not in r, r['error_description']
+		self.set_refresh_token(r['refresh_token'])
 		access_token = r['access_token']
 		if v:
 			print('=== access token ===')
