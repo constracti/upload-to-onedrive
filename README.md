@@ -66,12 +66,24 @@ The optional positive integer `BLOCK_LIMIT` has the default value of `327,680` =
 
 ### Delete old files
 
-Run **retention_policy.py**:
+Run **delete_older.py**:
 ```
-./retention_policy.py [--days DAYS] PATH
+./delete_older.py [--days DAYS] PATH
 ```
 to delete files from the `PATH` path in OneDrive, created at least `DAYS` days ago.
 
 `PATH` should not end with a slash `/` character.
 
 The optional non-negative integer `DAYS` has the default value of `7`.
+
+### Keep new files
+
+Run **keep_newer.py**:
+```
+./keep_newer.py [--count COUNT] PATH PREFIX
+```
+to delete all files from the `PATH` path in OneDrive, whose name start with `PREFIX`, except for the last `COUNT` files when sorted by name.
+
+`PATH` should not end with a slash `/` character.
+
+The optional non-negative integer `COUNT` has the default value of `7`.
