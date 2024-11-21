@@ -46,10 +46,14 @@ while True:
 	block_beg = block_pos
 	block_end = block_pos + block_size - 1
 	block_pos += block_size
-	r = requests.put(upload_url, headers={
-		'Content-Length': '{:d}'.format(block_size),
-		'Content-Range': 'bytes {:d}-{:d}/{:d}'.format(block_beg, block_end, file_size),
-	}, data=block_data)
+	# sometimes response.status_code is 503
+	for attempt in range(10):
+		r = requests.put(upload_url, headers={
+			'Content-Length': '{:d}'.format(block_size),
+			'Content-Range': 'bytes {:d}-{:d}/{:d}'.format(block_beg, block_end, file_size),
+		}, data=block_data)
+		if r.ok:
+			break
 	r = r.json()
 	assert 'error' not in r, r['error']['message']
 print('Upload complete')
